@@ -41,7 +41,7 @@ const router = express.Router()
 //     .catch(next)
 // })
 router.get('/joblisting', requireToken, (req, res, next) => {
-  JobListing.find()
+  JobListing.find({ owner: req.user.id })
     .then(joblistings => {
       // requireOwnership(req, joblistings)
       return joblistings.map(joblisting => joblisting.toObject())
