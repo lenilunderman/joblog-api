@@ -77,14 +77,9 @@ router.post('/joblisting', requireToken, (req, res, next) => {
 
 // DELETE joblisting/4234fdas65f6d5f68asd5f8a5f8758a5sd
 router.delete('/joblisting/:id', requireToken, (req, res, next) => {
-  JobListing.findById(req.params.id)
+  console.log(req.params.id)
+  JobListing.deleteOne({ _id: req.params.id })
     .then(handle404)
-    .then(joblisting => {
-      //throw an error if current user doesn't own the resource
-      requireOwnership(req, joblisting)
-      // delete the example ONLY IF the above didn't throw
-      joblisting.deleteOne()
-    })
     // send back 204 if no content if deletion succeeded
     .then(() => res.sendStatus(204))
     .catch(next)
@@ -95,7 +90,7 @@ router.patch('/joblisting/:id', requireToken, removeBlanks, (req, res, next) => 
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
   delete req.body.joblisting.owner
-
+  console.log('req body info: ', req.body)
   JobListing.findById(req.params.id)
     .then(handle404)
     .then(joblisting => {
@@ -107,7 +102,7 @@ router.patch('/joblisting/:id', requireToken, removeBlanks, (req, res, next) => 
       return joblisting.updateOne(req.body.joblisting)
     })
     // if succeded, return 204 and no json
-    .then(() => res.status(204))
+    .then(() => res.sendStatus(204))
     // if an error occurs, pass it to the handler
     .catch(next)
 
