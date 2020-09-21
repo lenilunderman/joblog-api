@@ -97,7 +97,7 @@ router.delete('/joblisting/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// UPDATE  PATCH /joblisting/fads87695ad97f6s9dfasdf0asdfa76f0asd
+// UPDATE  PATCH /joblisting/fads87695ad97f6s9dfasdf0asdfa76f0asd.
 router.patch('/joblisting/:id', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
