@@ -1,4 +1,3 @@
-
 # Job Logger API
 
 
@@ -7,12 +6,20 @@ The Job Logger application allows users to create, edit, delete, and view job li
 ## Important Links
 - [Job Logger Client Repo](https://github.com/lenilunderman/joblog-client)
 - [Job Logger API Repo](https://github.com/lenilunderman/joblog-api)
-- [Deployed Job Logger API](#)
-- [Deployed Job Logger Client](#)
+- [Deployed Job Logger API](https://radiant-sierra-86306.herokuapp.com)
+- [Deployed Job Logger Client](https://lenilunderman.github.io/joblog-client/#/)
 
 ## API URL
-    production: '######',
+    production: 'https://radiant-sierra-86306.herokuapp.com',
     development: 'http://localhost:4741'
+
+## Tasks
+
+| Command                | Effect                                                                                                      
+|------------------------|-------------------------------------------------------------------------------------------------------------|
+| `npm run server`       | Starts a development server with `nodemon` that automatically refreshes when you change something.                                                                                         |
+| `npm test`             | Runs automated tests.                                                                                       |
+| `npm run debug-server` | Starts the server in debug mode, which will print lots of extra info about what's happening inside the app. |
 
 ## API End Points
 
@@ -36,7 +43,7 @@ All data returned from API actions is formatted as JSON.
 
 ## Resources and Attributes
 
-The resource for my application is job listings. The user will be able to create, edit, delete job listings of places that he/she applied to work. A perfect tool to keep a log of job placements.
+The resource for my application is job listings. The user will be able to create, edit, delete job listings of places that he/she applied to work. A perfect tool to keep a log of job placements. 
 
 ## Technologies
 
@@ -53,7 +60,7 @@ The resource for my application is job listings. The user will be able to create
 This application came to life after expending numerous hours trying to find applications and websites to keep a log of places that I applied to work. The job logger is a simple tool to track your job search.
 
 #### The process:
-This application uses authentication and allows users to create resources inside the website. During the process of development, several tools were used to bring this API to live. Ajax, Mongoose, Express, Passport, and more. The application contains a robust back-end with validations for the user accounts.
+This application uses authentication and allows users to create resources inside the website. During the process of development, several tools were used to bring this API to live. Ajax, Mongoose, Express, Passport, and more. The application contains a robust back-end with validations for the user accounts. 
 
 #### Problem Solving:
 This application solves the problem of spending hours researching for tools and ways to save your job log search, saves everything in one place, and facilitate your job search.
