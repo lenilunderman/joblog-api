@@ -9,7 +9,7 @@ const jobListingSchema = new mongoose.Schema({
   },
   companyPosition: {
     type: String,
-    required: true
+    required: false
   },
   companyPerson: {
     type: String,

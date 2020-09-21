@@ -45,7 +45,7 @@ router.get('/joblisting/:search', requireToken, (req, res, next) => {
   JobListing.find({ owner: req.user.id })
     .then(joblistings => {
       // requireOwnership(req, joblistings)
-      return joblistings.map(joblisting => joblisting.toObject()).filter(job => job.companyName.includes(req.params.search))
+      return joblistings.map(joblisting => joblisting.toObject()).filter(job => job.companyName.toUpperCase().includes(req.params.search.toUpperCase()))
     })
     .then(joblistings => res.status(200).json({ joblistings: joblistings }))
     //if erros
