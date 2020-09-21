@@ -40,6 +40,18 @@ const router = express.Router()
 //     //if erros
 //     .catch(next)
 // })
+// search stuff
+router.get('/joblisting/:search', requireToken, (req, res, next) => {
+  JobListing.find({ owner: req.user.id })
+    .then(joblistings => {
+      // requireOwnership(req, joblistings)
+      return joblistings.map(joblisting => joblisting.toObject()).filter(job => job.companyName.includes(req.params.search))
+    })
+    .then(joblistings => res.status(200).json({ joblistings: joblistings }))
+    //if erros
+    .catch(next)
+})
+
 router.get('/joblisting', requireToken, (req, res, next) => {
   JobListing.find({ owner: req.user.id })
     .then(joblistings => {
@@ -77,7 +89,7 @@ router.post('/joblisting', requireToken, (req, res, next) => {
 
 // DELETE joblisting/4234fdas65f6d5f68asd5f8a5f8758a5sd
 router.delete('/joblisting/:id', requireToken, (req, res, next) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   JobListing.deleteOne({ _id: req.params.id })
     .then(handle404)
     // send back 204 if no content if deletion succeeded
