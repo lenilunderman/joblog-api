@@ -40,12 +40,30 @@ const router = express.Router()
 //     //if erros
 //     .catch(next)
 // })
+// SHOW only one resource / GET joblisting/776fsd6f87sd6fsfs7fs8fsdf
+router.get('/joblisting/:id', requireToken, (req, res, next) => {
+  // req.params.id will be set based on the `:id` in the route
+  JobListing.findById(req.params.id)
+    .then(handle404)
+    // if `findById` is succesful, respond with 200 and "example" JSON
+    .then(joblisting => res.status(200).json({ joblisting: joblisting.toObject() }))
+    // if an error occurs, pass it to the handler
+    .catch(next)
+
+})
+
 // search stuff
-router.get('/joblisting/:search', requireToken, (req, res, next) => {
+router.get('/joblisting/s/:search', requireToken, (req, res, next) => {
   JobListing.find({ owner: req.user.id })
     .then(joblistings => {
       // requireOwnership(req, joblistings)
-      return joblistings.map(joblisting => joblisting.toObject()).filter(job => job.companyName.toUpperCase().includes(req.params.search.toUpperCase()))
+      const joblistingArray = joblistings.map(joblisting => joblisting.toObject())
+      if (!req.params.search) {
+        return joblistingArray
+      }
+      else {
+        return joblistingArray.filter(job => job.companyName.toUpperCase().includes(req.params.search.toUpperCase()))
+      }
     })
     .then(joblistings => res.status(200).json({ joblistings: joblistings }))
     //if erros
@@ -61,18 +79,6 @@ router.get('/joblisting', requireToken, (req, res, next) => {
     .then(joblistings => res.status(200).json({ joblistings: joblistings }))
     //if erros
     .catch(next)
-})
-
-// SHOW only one resource / GET joblisting/776fsd6f87sd6fsfs7fs8fsdf
-router.get('/joblisting/:id', requireToken, (req, res, next) => {
-  // req.params.id will be set based on the `:id` in the route
-  JobListing.findById(req.params.id)
-    .then(handle404)
-    // if `findById` is succesful, respond with 200 and "example" JSON
-    .then(joblisting => res.status(200).json({ joblisting: joblisting.toObject() }))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-
 })
 
 // CREATE  - POST /joblisting
