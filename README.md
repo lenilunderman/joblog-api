@@ -1,3 +1,4 @@
+
 # Job Logger API
 
 
@@ -12,6 +13,16 @@ The Job Logger application allows users to create, edit, delete, and view job li
 ## API URL
     production: 'https://radiant-sierra-86306.herokuapp.com',
     development: 'http://localhost:4741'
+  
+## Set up and installation
+1. Download this application.
+2. Unzip the application.
+3. Move into the folder and run the command `git init`.
+4. Install dependencies with `npm install`.
+5. Ensure that you have  `nodemon`  installed by running  `npm install -g nodemon`.
+6. Ensure the API is functioning properly by running  `npm run server`.
+7. Once everything is working, make an initial commit.
+8. Run the development server with `npm start`.
 
 ## Tasks
 
